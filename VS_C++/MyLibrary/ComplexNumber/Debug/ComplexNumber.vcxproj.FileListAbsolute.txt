@@ -1,0 +1,2 @@
+D:\tools\Code_Cpp\VS_C++\MyLibrary\Debug\ComplexNumber.pdb
+D:\tools\Code_Cpp\VS_C++\MyLibrary\ComplexNumber\Debug\ComplexNumber.pdb

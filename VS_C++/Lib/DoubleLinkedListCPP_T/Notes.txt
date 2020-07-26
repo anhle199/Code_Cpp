@@ -1,0 +1,34 @@
+- thử làm hàm sort bằng quick sort
+
+// template <class T>
+// void quickSortImp(DoubleList<T> &double_list, Node<T> *&left, Node<T> *&right, const int &index_left, const int &index_right) {
+//     Node<T> *left_temp = left;
+//     Node<T> *right_temp = right;
+//     Node<T> *mid = left->next;
+//     int index_left_temp(index_left), index_right_temp(index_right);
+
+//     do {
+//         while (mid != nullptr && left_temp != nullptr && mid->data > left_temp->data) {
+//             left_temp = left_temp->next;
+//             index_left_temp++;
+//         }
+//         while (mid != nullptr && right_temp != nullptr && mid->data < right_temp->data) {
+//             right_temp = right_temp->prev;
+//             index_right_temp--;
+//         }
+
+//         if (index_left_temp <= index_right_temp) {
+//             swap(left_temp->data, right_temp->data);
+//             index_left_temp++;
+//             index_right_temp--;
+//             left_temp = left_temp->next;
+//             right_temp = right_temp->prev;
+//         }
+
+//     } while (index_left_temp <= index_right_temp);
+
+//     if (index_left < index_right_temp)
+//         quickSortImp(double_list, left_temp, right_temp, index_left, index_right_temp);
+//     if (index_left_temp < index_right)
+//         quickSortImp(double_list, left_temp, right_temp, index_left_temp, index_right);
+// }

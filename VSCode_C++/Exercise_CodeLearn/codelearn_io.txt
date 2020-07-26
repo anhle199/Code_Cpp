@@ -1,0 +1,184 @@
+#include <iostream>
+#include <string>
+#include <cmath>
+
+using namespace std;
+
+// bool checkLetter(char &c)
+// {
+//     return (('a' <= c && c <= 'z') || ('A' <= c && c <= 'Z'));
+// }
+
+// bool checkSpecialCharacter(char &c)
+// {
+//     return (('0' <= c && c <= '9') || c == ',' || c == ' ' || c == '?');   
+// }
+
+// void deleteCharacter(string &str, int index)
+// {
+//     int n = str.length();
+
+//     for (int i = index; i < n - 1; i++)
+//         str[i] = str[i + 1];
+
+//     str.pop_back(); 
+// }
+
+// std::string questionCorrection(std::string s)
+// {
+//     s += '?';
+
+//     int n = s.length();
+    
+//     // Convert question mark to space
+//     for (int i = n - 2; i > -1; i--)
+//         if (s[i] == '?')
+//             s[i] = ' ';
+
+//     // Conver invalid character to space
+//     for (int i = 0; i < n; i++)
+//     {
+//         if (checkSpecialCharacter(s[i]) == false && checkLetter(s[i]) == false)
+//             s[i] = ' ';
+//     }
+
+//     // Convert first letter to uppercase
+//     for (int i = 0; i < n; i++)
+//         if (checkLetter(s[i]))
+//         {
+//             s[i] = char(int(s[i]) - 32);
+//             break;
+//         }
+
+//     // Delete the space characters at the beginning and end of sentences 
+//     if (s[0] == ' ')
+//         deleteCharacter(s, 0);
+//     if (s[s.size() - 1] == ' ')
+//         deleteCharacter(s, s.size() - 1);
+
+//     //
+//     for (int i = 1; i < s.size() - 1; i++)
+//     {
+//         if (s[i] == ',' && (checkLetter(s[i]) == false && ('0' >= s[i] && s[i] >= '9')))
+//         {
+//             deleteCharacter(s, i);
+//             i--;
+//         }
+//         if (s[i] == ',' && s[i - 1] == ' ')
+//         {
+//             deleteCharacter(s, i);
+//             i--;
+//         }
+//     }
+
+//     // 
+//     int countSpace = 0;
+
+//     for (int i = 1; i < s.size() - 1; i++)
+//     {
+//         int j;
+
+//         if (s[i] == ' ')
+//         {
+//             countSpace++;
+
+//             for (j = i + 1; j < n - 1; j++)
+//             {
+//                 if (checkLetter(s[j]) || ('0' <= s[i] && s[i] <= '9'))
+//                     break;
+
+//                 countSpace++;
+//                 deleteCharacter(s, j);
+//             }
+
+//             i = j - countSpace - 1;
+//             countSpace = 0;
+//         }
+//     }
+
+//     for (int i = s.size() - 2; i > -1; i--)
+//     {
+//         if (checkLetter(s[i]))
+//             break;
+//         deleteCharacter(s, i);
+//     }
+
+//     return s;
+// }
+
+bool isPrime(long long &n)
+{
+    if (n < 2)
+        return false;
+
+    for (long long i = 2; i < (long long)sqrt(n) + 1; i++)
+        if (n % i == 0)
+            return false;
+    
+    return true;
+}
+
+long long findMaxDivisor(long long &n)
+{
+    if (n == 1)
+        return 1;
+
+    for (long long i = n / 2; i > 2; i--)
+        if (n % i == 0)
+            return i;
+}
+
+long long numberConverter(long long n)
+{
+    if (isPrime(n))
+        return n;
+    else if (n % 2 == 0)
+        return numberConverter(n / 2);
+    else
+        return numberConverter(findMaxDivisor(n));
+}
+
+
+int main()
+{
+    // string s1, s2, s3, s4, s5, s6, resultS1, resultS2, resultS3, resultS4, resultS5, resultS6;
+
+    // s1 = " this  is not   a     relevant question , is it??? ";
+    // s2 = "Is this answer correct?";
+    // s3 = "                                      s.";
+    // s4 = "z?";
+    // s5 = "z";
+    // s6 = " what is the value? of Sin theta into cos theta ,?";
+    // resultS1 = "This is not a relevant question, is it?";
+    // resultS2 = "Is this answer correct?";
+    // resultS3 = "S?";
+    // resultS4 = "Z?";
+    // resultS5 = "Z?";
+    // resultS6 = "What is the value of sin theta into cos theta?";
+
+    // if (questionCorrection(s1) == resultS1)
+    //     cout << "test 1: Right answer" << endl;
+    // else cout << "test 1: Wrong answer" << endl;
+
+    // if (questionCorrection(s2) == resultS2)
+    //     cout << "test 2: Right answer" << endl;
+    // else cout << "test 2: Wrong answer" << endl;
+
+    // if (questionCorrection(s3) == resultS3)
+    //     cout << "test 3: Right answer" << endl;
+    // else cout << "test 3: Wrong answer" << endl;
+
+    // if (questionCorrection(s4) == resultS4)
+    //     cout << "test 4: Right answer" << endl;
+    // else cout << "test 4: Wrong answer" << endl;
+
+    // if (questionCorrection(s5) == resultS5)
+    //     cout << "test 5: Right answer" << endl;
+    // else cout << "test 5: Wrong answer" << endl;
+    
+    // if (questionCorrection(s6) == resultS6)
+    //     cout << "test 6: Right answer" << endl;
+    // else cout << "test 6: Wrong answer" << endl;
+
+    return 0;
+}

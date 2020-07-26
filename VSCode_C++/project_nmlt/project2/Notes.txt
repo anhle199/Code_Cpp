@@ -1,0 +1,41 @@
+-------------------------------------------------------------------------------------------------------------------------------------
+************** Cách này là rút từng lá rồi thay, xong rồi bỏ xuống rút lá khác.
+
+Câu 3:
+- Việc chọn thay thế 1, hoặc 2, hoặc 3 lá mới là do nhà cái quyết định.
+- Thuật toán 1: vị trí thay thế lá bài là ngẫu nhiên (random).
+- Thuật toán 2: chọn vị trí thay thế để được điểm cao nhất (sẽ thay thế lá bài nếu điểm sau khi rút >= điểm trước khi rút).
+
+Câu 4:
+- Giống thuật toán 2 của câu 3.
+
+Câu 5: Các mức độ chơi:
+- Số người chơi tối đa: 9
+- Sau khi chia bài xong còn dư ít nhất 7 lá.
+- Việc rút thêm 1-3 lá bài do nhà cái quyết định.
+- Giả sử bộ bài còn lại 7 lá và nhà cái rút 2 lá.
+- Dễ:
+	+ Chọn 2 lá liên tiếp (2 lá đầu) trong 7 lá còn lại.
+	+ Sẽ thay thế lá bài nếu điểm sau khi rút >= điểm trước khi rút.
+- Trung bình:
+	+ Rút từng lá trong 7 lá còn lại theo thứ tự.
+	+ Nếu đã rút lá thứ i thì chỉ được rút những lá ở phía sau từ vị trí (i + 1) chứ không được rút những lá phía trước lá đã rút.
+	+ Rút những lá sao cho điểm sau khi rút >= điểm trước khi rút.
+- Khó:
+	+ Được rút các lá không cần theo thứ tự.
+	+ Nếu đã rút lá thứ i thì vẫn được rút những lá ở phía trước i từ vị trí (i - 1) về vị trí 0.
+	+ Rút những lá sao cho điểm sau khi rút > điểm trước khi rút.
+	+ Nếu không có lá nào thỏa mãn thì sẽ không rút.
+
+-------------------------------------------------------------------------------------------------------------------------------------
+************** Chơi theo cách này thì kì lắm, không hay (nhiều khi lại quá dễ để điểm cao hơn cho nhà cái) bằng cách trên, thuật toán nó lại khó hơn.
+************** Nếu như thay đổi cách rút bài là rút 1 lần.
+**** fix lại việc thay bài (câu 3 và câu 5)
+==> vd thay 2 lá: Lấy 2 lá vào 1 mảng sao đó thay tuần tự vào 5 lá bài.
+sửa hàm thay bài, chế độ khó, trung bình, thuật toán 2.
+**** chỉnh lại giao diện chơi
+==> đối với câu 3 khi vào chế độ chơi cho nhà cái thì chọn cố định 1 thuật toán, nếu chọn thuật toán 2 thì chọn chế độ chơi cố định 1 lần, còn việc rút thêm bài thì tùy mỗi lần chia bài.
+
+
+-----------------------------------------------------------------------------------------
+-- Những cái cần chỉnh sửa:

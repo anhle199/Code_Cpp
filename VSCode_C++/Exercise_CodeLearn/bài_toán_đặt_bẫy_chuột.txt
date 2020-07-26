@@ -1,0 +1,107 @@
+int countRooms(vector<int> &arr, int &current_room)
+{
+    int count = 0;
+    int n = arr.size();
+
+    for (int i = 0; i < n; i++)
+        if (current_room == arr[i])
+            count++;
+    
+    return count;
+}
+
+void removeElementsDuplicate(vector<int> &arr)
+{
+    int m = 0;
+    int n = arr.size();
+    for (int i = 0; i < n; i++)
+    {
+        bool flag = true;
+        for (int j = 0; j < m; j++)
+            if (arr[i] == arr[j])
+                flag = false;
+        
+        if (flag)
+        {
+            arr[m] = arr[i];
+            m++;
+        }
+    }
+
+    arr.resize(m);
+}
+
+int findMinPriceWithNumberOfRoomsGreaterThanEqualToTwo(vector<int> &arr, vector<int> &price)
+{
+    int n = arr.size();
+    int min_price = 10001;
+
+    for (int i = 0; i < n; i++)
+        if ((countRooms(arr, arr[i]) > 1) && (price[arr[i] - 1] < min_price))
+            min_price = price[arr[i] - 1];
+
+    return min_price;
+}
+
+int sumArray(vector<int> &arr)
+{
+    int n = arr.size();
+    int sum = 0;
+
+    for (int i = 0; i < n; i++)
+        sum += arr[i];
+
+    return sum;
+}
+
+bool isDuplicated(vector<int> &arr, int &x)
+{
+    int n = arr.size();
+
+    for (int i = 0; i < n; i++)
+        if (arr[i] == x)
+            return true;
+    
+    return false;
+}
+
+int minimalCost(std::vector<int> c, std::vector<int> a)
+{
+    vector<int> room, price, condition;
+    int n = a.size();
+
+    for (int i = 0; i < n; i++)
+    {
+        int current_room = i + 1;
+
+        
+            
+        vector<int> temp;
+        temp.push_back(current_room);
+
+        while ((current_room != a[current_room - 1]) && (countRooms(temp, current_room) < 3))
+        {
+            current_room = a[current_room - 1];
+            temp.push_back(current_room);
+        }
+
+        if (isDuplicated(condition, current_room))
+            continue;
+
+        if (current_room == a[current_room - 1])
+        {
+            price.push_back(c[current_room - 1]);
+            condition.push_back(current_room);
+        }   
+        else if (current_room != a[current_room - 1])
+        {
+            price.push_back(findMinPriceWithNumberOfRoomsGreaterThanEqualToTwo(temp, c));
+            
+            for (int j = 0; j < temp.size(); j++)
+                if (countRooms(temp, temp[j]) > 1)
+                    condition.push_back(temp[j]);
+        }
+    }
+
+    return sumArray(price);
+}

@@ -1,0 +1,2 @@
+- coi lại kiểu dữ liệu của các tham số truyền vào và cập nhật lại cho chuẩn hơn
+- operator= để gán 1 mảng như arr = {1, 2, 3, 4, 5}

@@ -1,0 +1,3 @@
+Trung tâm tính toán hiệu năng cao nhận được đơn đặt hàng của n khách hàng.
+Khách hàng i muốn sử dụng máy trong khoảng thời gian từ ai đến bi và trả tiền thuê là ci.
+Hãy bố trí lịch thuê máy để tổng số tiền thu được là lớn nhất mà thời gian sử dụng máy của 2 khách hàng bất kì được phục vụ đều không giao nhau (cả trung tâm chỉ có một máy cho thuê).

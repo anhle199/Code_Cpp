@@ -1,0 +1,55 @@
+long long calculateMaxMinusMinOfAllSubsequence2(std::vector<int> a)
+{
+    long long u(0), v(0);
+    int n = a.size();
+
+    for (int i = 0; i < n; i++)
+        for (int j = i; j < n; j++)
+        {
+            if (a[i] > a[j])
+            {
+                u += a[i];
+                v += a[j];
+            }
+            else
+            {
+                u += a[j];
+                v += a[i];
+            }
+        }
+
+    return (u - v);
+}
+
+---------------------------------------
+fromAtoJ
+
+bool check(const std::string &str)
+{
+    int len = str.length();
+    vector<int> arr(26, 0);
+
+    for (const char &c : str)
+        arr[(int)c - 97]++;
+
+    for (int i = 0; i < 10; i++)
+        if (arr[i] == 0)
+            return false;
+            
+    return true;
+}
+int fromAtoJ(std::vector<std::string> arr)
+{
+    int n = arr.size();
+    int count = 0;
+
+    for (int i = 0; i < n - 1; i++)
+        for (int j = i + 1; j < n; j++)
+        {
+            std::string temp = arr[i] + arr[j];
+            if (check(temp))
+                count++;
+        }
+    
+    return count;
+}

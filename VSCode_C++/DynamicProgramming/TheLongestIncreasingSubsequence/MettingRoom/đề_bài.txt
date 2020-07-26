@@ -1,0 +1,18 @@
+Có n cuộc họp đang cần được tổ chức tại một phòng họp. Thời gian bắt đầu và kết thúc của các cuộc họp được biểu diễn bằng mảng các số nguyên dương s và e. Biết tại 1 thời điểm trong phòng chỉ có thể có nhiều nhất 1 cuộc họp, bạn hãy tìm cách sắp xếp để số cuộc họp là nhiều nhất có thể.
+
+Ví dụ:
+
+    Cho s = [1, 3], e = [3, 5] output là mettingRoom(s, e) = 2.
+    Giải thích:
+	Cuộc họp thứ nhất bắt đầu từ 1 -> 3.
+	Cuộc họp thứ hai bắt đầu từ 3 -> 5.
+	Hai cuộc họp này không trùng nhau nên có thể sắp xếp được cả 2.
+    Cho s = [1, 2, 3, 5], e = [2, 4, 6, 8] output là mettingRoom(s, e) = 3.
+    Giải thích:
+	Các cuộc họp được tổ chức là 1, 2, 4.
+
+
+
+
+
+https://codelearn.io/learningtask/index?id=133067&taskid=501634

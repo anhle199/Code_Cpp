@@ -1,0 +1,16 @@
+5
+168352124124
+Nguyen Van A
+2.5
+1123874345
+Nguyen Van B
+3.6
+19127329
+Le Hoang Anh
+3.6
+168352124124
+Nguyen Van C
+3.7
+1984135132
+Nguyen Van D
+1.2

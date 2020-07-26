@@ -1,0 +1,9 @@
+-----Tìm Geometric Median------
+
+1) Tạo 2 biến current_point (lưu tọa độ Geometric Median, trung bình cộng tất cả các điểm) và biến min_distance (lưu tổng khoảng cách từ current_point tới các điểm của đề)
+2) Dùng 1 vòng lặp tính tổng khoảng cách từng điểm của đề đến tất cả các điểm ban đầu, nếu tổng khoảng cách < min_distance thì cập nhật lại 2 biến ở trên
+3) Dùng tiếp 1 vòng lặp: lặp cho đến khi low_limit > test_distance (giá trị low_limit càng thấp thì càng chính xác, giả sử là 0.00001)
+ - Lấy điểm current_point di chuyển sang 4 hướng (left, up, right, down) 1 khoảng cách là test_distance (giả sử khoảng 1000), được 4 điểm mới
+ - Tiếp tục tính giống như vòng lặp trước:
+   + Nếu tổng khoảng cách từ điểm mới đến tất cả điểm ban đầu nhỏ hơn thì cập nhật lại 2 biến current_point và min_distance.
+   + Ngược lại thì test_distance / 2.

@@ -1,0 +1,40 @@
+1) Thuật toán biểu diễn một biểu thức theo dạng Ba Lan ngược:
+	while (vẫn còn phần tử trong biểu thức)
+		Đọc phần tử này và xóa nó khỏi biểu thức
+		if (phần tử này là giá trị) //Phần tử là toán hạng
+			đưa nó vào hàng đợi kết quả
+		else if (phần tử này là toán tử) //giả sử là o1
+			while (có toán tử o2 ở trên cùng của Ngăn Xếp)
+				if (o2 có độ ưu tiên cao hơn o1)
+					pop o2 ra khỏi Ngăn Xếp và đưa vào hàng đợi kết quả
+			end //while
+		else if (phần tử là dấu "mở ngoặc") //dấu '('
+			push nó vào Ngăn Xếp
+		else if (phần tử là dấu "đóng ngoặc") //dấu ')'
+			while (phần tử đầu Ngăn Xếp != dấu "mở ngoặc")
+				pop phần tử này và đưa vào hàng đợi kết quả
+			end //while
+			pop dấu "mở ngoặc" ra khỏi Ngăn Xếp
+	end //while
+	// đã hết các phần tử từ biểu thức
+	while (còn giá trị trong Ngăn Xếp)
+		pop giá trị này ra và đưa ra hàng đợi kết quả
+	end //while
+
+2) Thuật toán tính giá trị của một biểu thức Ba Lan ngược:
+	while (vẫn còn phần tử trong biểu thức) //biểu thức Ba Lan ngược
+		Đọc phần tử này và xóa nó khỏi biểu thức
+		if (phần tử này là giá trị) //phần tử là toán hạng
+			push nó vào Ngăn Xếp
+		else //là toán tử, giả sử toán tử này cần n toán hạng
+			if (số toán hạng trong Ngăn Xếp < n)
+				báo lỗi "không đủ số toán hạng"
+			else
+				pop n giá trị từ Ngăn Xếp
+				tính giá trị phép toán này
+				push kết quả của phép toán này vào lại Ngăn Xếp
+	end //while
+	if (còn 1 giá trị trong Ngăn Xếp)
+		in giá trị này ra. Đó chính là kết quả của biểu thức
+	else //có nhiều hơn 1 giá trị trong Ngăn Xếp
+		Báo lỗi "người dùng nhập vào một biếu thức sai"

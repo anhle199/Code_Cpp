@@ -2,6 +2,7 @@
 #define TREE_NODE_H_
 
 #include <memory.h>
+#include <iostream>
 
 // Declaration.
 
@@ -81,10 +82,8 @@ Node<T>* Node<T>::clone(Node<T>*& tree) {
 	if (tree) {
 		p = new Node<T>(tree->data);
 
-		if (tree->left)
-			p->left = Node<T>::clone(tree->left);
-		if (tree->right)
-			p->right = Node<T>::clone(tree->right);
+		p->left = Node<T>::clone(tree->left);
+		p->right = Node<T>::clone(tree->right);
 	}
 
 	return p;

@@ -1,43 +1,36 @@
-#ifndef BINARY_TREE_H_
-#define BINARY_TREE_H_
+#ifndef TREE_NODE_H_
+#define TREE_NODE_H_
 
-#include "Node.h"
+#include <memory.h>
+#include <iostream>
 
+using namespace std;
 
 // Declaration.
 
 template <class T>
-class BinarySearchTree {
-private:
-	Node<T>* tree;
-	size_t numberOfNodes;
+class Node {
+public:
+	T data;
+	Node* left, * right;
+
+	static bool isEqual(Node<T>* p1, Node<T>* p2);
+	static Node<T>* clone(Node<T>* const tree, size_t& numberOfNodes);
+	static void searchStandFor(Node<T>*& p1, Node<T>*& p2);
+	static Node<T>* insert(Node<T>*& tree, const T& data);
+	static void remove(Node<T>*& tree, const T& data, bool& removed);
+	static void removeAll(Node<T>*& tree);
+	static Node<T>* find(Node<T>* tree, const T& data);
 
 public:
-	BinarySearchTree();
-	BinarySearchTree(const Node<T>*& tree);
-	BinarySearchTree(const BinarySearchTree<T>& bTree);
+	Node();
+	Node(const T& data, Node<T>* left = nullptr, Node<T>* right = nullptr);
 
-	size_t size() const;
-	bool empty() const;
+	template <class T>
+	friend class BinaryTree;
 
-	void add(const T& data);
-	void add(const Node<T>* p);
-	Node<T>* insert(const T& data);
-	Node<T>* insert(const Node<T>* p);
-
-	void remove(const T& data);
-	void remove(const Node<T>* p);
-	void removeAll();
-
-	Node<T>* find(const T& data) const;
-	Node<T>* find(const Node<T>* p) const;
-
-	BinarySearchTree& operator=(const BinarySearchTree<T>& bTree);
-
-	bool operator==(const BinarySearchTree<T>& bTree) const;
-	bool operator!=(const BinarySearchTree<T>& bTree) const;
-
-	~BinarySearchTree();
+	template <class T>
+	friend ostream& operator<<(ostream& outDev, const Node<T>* const p);
 };
 
 
@@ -45,109 +38,150 @@ public:
 // Implementation.
 
 template <class T>
-BinarySearchTree<T>::BinarySearchTree() : tree(nullptr), numberOfNodes(0) {}
-
-template <class T>
-BinarySearchTree<T>::BinarySearchTree(const Node<T>*& tree) {
-	this->numberOfNodes = 0;
-	this->tree = Node<T>::clone(tree, this->numberOfNodes);
+Node<T>::Node() {
+	memset((char*)data, 0, sizeof(T));
+	left = right = nullptr;
 }
 
 template <class T>
-BinarySearchTree<T>::BinarySearchTree(const BinarySearchTree<T>& bTree) {
-	*this = bTree;
+Node<T>::Node(const T& data, Node<T>* left, Node<T>* right) {
+	this->data = data;
+	this->left = left;
+	this->right = right;
 }
 
 template <class T>
-size_t BinarySearchTree<T>::size() const {
-	return numberOfNodes;
+bool check(Node<T>*& p1, Node<T>*& p2) {
+	return !((p1 == nullptr && p2 != nullptr) || (p1 != nullptr && p2 == nullptr));
 }
 
 template <class T>
-bool BinarySearchTree<T>::empty() const {
-	return (this->tree == nullptr);
+bool Node<T>::isEqual(Node<T>* p1, Node<T>* p2) {
+	if (check(p1, p2))
+		return false;
+
+	if (p1 != nullptr && p2 != nullptr) {
+		if (p1->data != p2->data)
+			return false;
+
+
+		bool checkLeft = check(p1->left, p2->left);
+		bool checkRight = check(p1->right, p2->right);
+
+		if (checkLeft || checkRight)
+			return false;
+
+		if (checkLeft == false && Node<T>::isEqual(p1->left, p2->left) == false)
+			return false;
+		if (checkRight == false && Node<T>::isEqual(p1->right, p2->right) == false)
+			return false;
+	}
+
+	return true;
 }
 
 template <class T>
-void BinarySearchTree<T>::add(const T& data) {
-	Node<T>* temp = this->insert(data);
-}
+Node<T>* Node<T>::clone(Node<T>* const tree, size_t& numberOfNodes) {
+	Node<T>* p = nullptr;
 
-template <class T>
-void BinarySearchTree<T>::add(const Node<T>* p) {
-	Node<T>* temp = this->insert(p->data);
-}
+	if (tree) {
+		p = new Node<T>(tree->data);
+		++numberOfNodes;
 
-template <class T>
-Node<T>* BinarySearchTree<T>::insert(const T& data) {
-	Node<T>* p = Node<T>::insert(this->tree, data);
-
-	if (p)
-		++this->numberOfNodes;
+		p->left = Node<T>::clone(tree->left, numberOfNodes);
+		p->right = Node<T>::clone(tree->right, numberOfNodes);
+	}
 
 	return p;
 }
 
 template <class T>
-Node<T>* BinarySearchTree<T>::insert(const Node<T>* p) {
-	return this->insert(p->data);
+void Node<T>::searchStandFor(Node<T>*& p1, Node<T>*& p2) {
+	if (p2->left)
+		Node<T>::searchStandFor(p1, p2->left);
+	else {
+		p1->data = p2->data;
+		p1 = p2;
+		p2 = p2->right;
+	}
 }
 
 template <class T>
-void BinarySearchTree<T>::remove(const T& data) {
-	bool removed = false;
+Node<T>* Node<T>::insert(Node<T>*& tree, const T& data) {
+	if (tree) {
+		if (tree->data == data)
+			return nullptr;
+		else if (tree->data > data)
+			return Node<T>::insert(tree->left, data);
+		else
+			return Node<T>::insert(tree->right, data);
+	}
 
-	Node<T>::remove(this->tree, data, removed);
+	tree = new Node(data);
 
-	if (removed)
-		--this->numberOfNodes;
-}
-
-template <class T>
-void BinarySearchTree<T>::remove(const Node<T>* p) {
-	this->remove(this->tree, p->data);
-}
-
-template <class T>
-void BinarySearchTree<T>::removeAll() {
-	Node<T>::removeAll(this->tree);
-	this->numberOfNodes = 0;
-}
-
-template <class T>
-Node<T>* BinarySearchTree<T>::find(const T& data) const {
-	return Node<T>::find(this->tree, data);
-}
-
-template <class T>
-Node<T>* BinarySearchTree<T>::find(const Node<T>* p) const {
-	if (p == nullptr)
+	// Not enough memory.
+	if (tree == nullptr)
 		return nullptr;
 
-	return Node<T>::find(this->tree, p->data);
+	return tree;
 }
 
 template <class T>
-BinarySearchTree<T>& BinarySearchTree<T>::operator=(const BinarySearchTree<T>& bTree) {
-	this->numberOfNodes = 0;
-	this->tree = Node<T>::clone(bTree.tree, this->numberOfNodes);
+void Node<T>::remove(Node<T>*& tree, const T& data, bool& removed) {
+	if (tree) {
+		if (tree->data > data)
+			Node<T>::remove(tree->left, data, removed);
+		if (tree->data < data)
+			Node<T>::remove(tree->right, data, removed);
+		else {
+			Node<T>* p = tree;
 
-	return *this;
+			if (tree->left == nullptr)
+				tree = tree->right;
+			else if (tree->right == nullptr)
+				tree = tree->left;
+			else
+				Node<T>::searchStandFor(p, tree->right);
+
+			delete p;
+			removed = true;
+		}
+	}
 }
 
 template <class T>
-bool BinarySearchTree<T>::operator==(const BinarySearchTree<T>& bTree) const {
-	return (this == &bTree || Node<T>::isEqual(this->tree, bTree.tree));
+void Node<T>::removeAll(Node<T>*& tree) {
+	if (tree) {
+		Node<T>::removeAll(tree->left);
+		Node<T>::removeAll(tree->right);
+
+		delete tree;
+		tree = nullptr;
+	}
 }
 
 template <class T>
-bool BinarySearchTree<T>::operator!=(const BinarySearchTree<T>& bTree) const {
-	return !(*this == bTree);
+Node<T>* Node<T>::find(Node<T>* tree, const T& data) {
+	while (tree) {
+		if (tree->data == data)
+			return tree;
+		else if (tree->data > data)
+			tree = tree->left;
+		else
+			tree = tree->right;
+	}
+
+	return nullptr;
 }
 
 template <class T>
-BinarySearchTree<T>::~BinarySearchTree() {
-	this->removeAll();
+ostream& operator<<(ostream& outDev, const Node<T>* const p) {
+	if (p == nullptr)
+		cout << "(null)";
+	else
+		cout << p->data;
+
+	return outDev;
 }
 
 #endif

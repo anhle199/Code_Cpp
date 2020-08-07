@@ -1,0 +1,12 @@
+- Là một chương trình thao túng các chương trình khác.
+
+vd: the fastest fourier transform in the west (fftw)
+
+
+- Ngôn ngữ lập trình đầu tiên hỗ trợ metaprogramming là LISt processor (LISP) vào cuối những năm 1950.
+- When a program can observe and modify its own structure and behaviour is called reflection and it's a type of metaprogramming.
+- Template khác macro: macro là compile-time, template là run-time.
+- Template metaprogramming không có mutable variable, nghĩa là các biến không thể thay đổi giá trị sau khi đã khởi tạo.
+- Thực hiện lúc compile-time, giá trị là một hằng số.
+- Turing-complete.
+- 4 yếu tố tạo thành metaprogramming: type, value, branch, recursion.

@@ -1,0 +1,33 @@
+* When metaprogramming:
+- Thông thường sử dụng template metaprogramming để loại bỏ bớt các tác vụ ... hoặc dễ bị lỗi.
+VD: bạn có thể viết một chương trình mã máy bằng tay thì thay vào đó có thể dùng các NNLT bậc cao để dịch nó sang các đoạn mã máy bậc thấp.
+
+- You want the code to be expressed in terms of the abstractions of the problem domain. (Bạn muốn viết đoạn mã trừu tượng cho các vấn đề cụ thể)
+
+- Bạn muốn tận dụng những cái đã có sẵn, xây dựng sẵn.
+- Bạn muốn làm tất cả mọi thứ với C++ mà không cần công cụ nào khác.
+
+
+
+
+* Rules for template metaprogramming:
+- Không có vòng lặp, chỉ có đệ quy.
+- Tham số của metafunction được bao trong cặp <>.
+- Không có biến, chỉ có giá trị.
+	VD: struct ValueHolder
+	    {
+	       enum { value = 2 };
+	    };
+- Các giá trị là hằng số và không thể thay đổi sao khi đã khởi tạo (vì các biểu thức có dùng giá trị được tính toán tại compile-time).
+- Có thể đặt tên cho giá trị như các biến thông thường trong lập trình.
+- Khi làm việc với type thì tên giá trị là typedef.
+	VD: struct ValueHolder
+	    {
+	       typedef int value;
+	    };
+
+(
+- Loops with recursive template definitions.
+- Conditionals with partial template specializations.
+- Returns using typedefs.
+)

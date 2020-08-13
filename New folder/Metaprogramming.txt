@@ -7,7 +7,7 @@ VD: bạn có thể viết một chương trình mã máy bằng tay thì thay v
 - Bạn muốn tận dụng những cái đã có sẵn, xây dựng sẵn.
 - Bạn muốn làm tất cả mọi thứ với C++ mà không cần công cụ nào khác.
 
-
+- You want to write a computer program that manipulates the other programs and treats them as its data
 
 
 * Rules for template metaprogramming:

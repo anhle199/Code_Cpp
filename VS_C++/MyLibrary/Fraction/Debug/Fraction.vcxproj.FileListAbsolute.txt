@@ -1,2 +1,0 @@
-D:\tools\Code_Cpp\VS_C++\MyLibrary\Debug\Fraction.pdb
-D:\tools\Code_Cpp\VS_C++\MyLibrary\Fraction\Debug\Fraction.pdb

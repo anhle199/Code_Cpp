@@ -27,11 +27,9 @@ int main() {
         cout << "|--------------------------------------------------------------------|" << endl;
         cout << "| 3. Convert from base decimal to n.                                 |" << endl;
         cout << "|--------------------------------------------------------------------|" << endl;
-        cout << "| 4. Convert from binary to decimal.                                 |" << endl;
+        cout << "| 4. Print out all decimal values represented by all type of binary. |" << endl;
         cout << "|--------------------------------------------------------------------|" << endl;
-        cout << "| 5. Print out all decimal values represented by all type of binary. |" << endl;
-        cout << "|--------------------------------------------------------------------|" << endl;
-        cout << "| 6. Exit.                                                           |" << endl;
+        cout << "| 5. Exit.                                                           |" << endl;
         cout << "|--------------------------------------------------------------------|" << endl;
 
         cout << "\nEnter your choice: ";

@@ -6,7 +6,7 @@
 //
 
 #include <iostream>
-#include "RepresentInteger.h"
+#include "NumberConverter.h"
 
 int main() {
     int choice;
@@ -14,7 +14,7 @@ int main() {
     string value;
     Sign signBit;
     UInt k;
-    RepresentInteger rn;
+    NumberConverter converter;
     vector<string> listOfDecimalValues;
 
     do {
@@ -47,9 +47,9 @@ int main() {
                 cout << "Enter base m: ";
                 cin >> baseM;
 
-                rn.setValueBaseN(value, baseN);
+                converter.setValueBaseN(value, baseN);
                 cout << "Base " << baseN << ": " << value << endl;
-                cout << "Base " << baseM << ": " << rn.valueBaseN(baseM) << endl;
+                cout << "Base " << baseM << ": " << converter.valueBaseN(baseM) << endl;
 
                 break;
             case 2:
@@ -60,9 +60,9 @@ int main() {
                 cout << "Enter value of base " << baseN << ": ";
                 getline(cin, value);
 
-                rn.setValueBaseN(value, baseN);
+                converter.setValueBaseN(value, baseN);
                 cout << "Base " << baseN << ": " << value << endl;
-                cout << "Base 10" << ": " << rn.decimal() << endl;
+                cout << "Base 10" << ": " << converter.decimal() << endl;
 
                 break;
             case 3:
@@ -73,9 +73,9 @@ int main() {
                 cout << "Enter base n: ";
                 cin >> baseN;
 
-                rn.setValueBaseN(value, 10);
+                converter.setValueBaseN(value, 10);
                 cout << "Base 10" << ": " << value << endl;
-                cout << "Base 10" << ": " << rn.valueBaseN(baseN) << endl;
+                cout << "Base 10" << ": " << converter.valueBaseN(baseN) << endl;
 
                 break;
             case 4:
@@ -89,8 +89,8 @@ int main() {
                 cout << "Enter the k for excess k type (non-negative number): ";
                 cin >> k;
 
-                rn.setValueBaseN(signBit + value, 2);
-                listOfDecimalValues = rn.decimalRepresentByBinaryAllTypes(k);
+                converter.setValueBaseN(signBit + value, 2);
+                listOfDecimalValues = converter.decimalRepresentByBinaryAllTypes(k);
 
                 cout << "Normal: " << listOfDecimalValues[NORMAL] << endl;
                 cout << "Excess " << k << ": " << listOfDecimalValues[OFFSET_BINARY] << endl;

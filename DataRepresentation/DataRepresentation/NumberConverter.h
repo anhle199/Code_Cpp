@@ -1,5 +1,5 @@
 //
-//  RepresentInteger.h
+//  NumberConverter.h
 //  DataRepresentation
 //
 //  Created by Le Hoang Anh on 10/24/20.
@@ -29,7 +29,7 @@ struct ValueInBase {
 };
 
 
-class RepresentInteger {
+class NumberConverter {
     string _decimalValue;
 
     static const vector<ValueInBase> _valueInBase;
@@ -47,9 +47,9 @@ class RepresentInteger {
     static string excessKToDecimal(const string &binary, UInt k);
     
 public:
-    RepresentInteger();
-    RepresentInteger(const string &value, UInt radix);
-    RepresentInteger(const string &binary, TypeRepresentBinary type = NORMAL, UInt kForOffsetBinary = 0);
+    NumberConverter();
+    NumberConverter(const string &value, UInt radix);
+    NumberConverter(const string &binary, TypeRepresentBinary type = NORMAL, UInt kForOffsetBinary = 0);
 
     void setValueBaseN(const string &value, UInt radix);
     void setValueBinary(const string &binary, TypeRepresentBinary type = NORMAL, UInt kForOffsetBinary = 0);

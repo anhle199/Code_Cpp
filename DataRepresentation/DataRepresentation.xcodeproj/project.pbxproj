@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		E6F292D62545B10000D620E7 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E6F292D12545B10000D620E7 /* main.cpp */; };
-		E6F292D72545B10000D620E7 /* RepresentInteger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E6F292D32545B10000D620E7 /* RepresentInteger.cpp */; };
+		E6F292D72545B10000D620E7 /* NumberConverter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E6F292D32545B10000D620E7 /* NumberConverter.cpp */; };
 		E6F292D82545B10000D620E7 /* Number.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E6F292D52545B10000D620E7 /* Number.cpp */; };
 /* End PBXBuildFile section */
 
@@ -27,8 +27,8 @@
 /* Begin PBXFileReference section */
 		E6F292C52545B09100D620E7 /* DataRepresentation */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = DataRepresentation; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6F292D12545B10000D620E7 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		E6F292D22545B10000D620E7 /* RepresentInteger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepresentInteger.h; sourceTree = "<group>"; };
-		E6F292D32545B10000D620E7 /* RepresentInteger.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RepresentInteger.cpp; sourceTree = "<group>"; };
+		E6F292D22545B10000D620E7 /* NumberConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NumberConverter.h; sourceTree = "<group>"; };
+		E6F292D32545B10000D620E7 /* NumberConverter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NumberConverter.cpp; sourceTree = "<group>"; };
 		E6F292D42545B10000D620E7 /* Number.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Number.h; sourceTree = "<group>"; };
 		E6F292D52545B10000D620E7 /* Number.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Number.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -66,8 +66,8 @@
 				E6F292D12545B10000D620E7 /* main.cpp */,
 				E6F292D52545B10000D620E7 /* Number.cpp */,
 				E6F292D42545B10000D620E7 /* Number.h */,
-				E6F292D32545B10000D620E7 /* RepresentInteger.cpp */,
-				E6F292D22545B10000D620E7 /* RepresentInteger.h */,
+				E6F292D32545B10000D620E7 /* NumberConverter.cpp */,
+				E6F292D22545B10000D620E7 /* NumberConverter.h */,
 			);
 			path = DataRepresentation;
 			sourceTree = "<group>";
@@ -130,7 +130,7 @@
 			files = (
 				E6F292D82545B10000D620E7 /* Number.cpp in Sources */,
 				E6F292D62545B10000D620E7 /* main.cpp in Sources */,
-				E6F292D72545B10000D620E7 /* RepresentInteger.cpp in Sources */,
+				E6F292D72545B10000D620E7 /* NumberConverter.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

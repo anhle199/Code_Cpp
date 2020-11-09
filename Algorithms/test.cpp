@@ -25,7 +25,7 @@ int main() {
 //    Sort<int>::ShakerSort(a, ascending);
 //    Sort<int>::QuickSort(a, ascendingInt);
 //    Sort<int>::HeapSort(a, ascendingInt);
-
+    Sort<int>::MergeSort(a, ascending);
     for (const int &item : a) 
         cout << item << " ";
     cout << endl;

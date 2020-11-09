@@ -23,6 +23,10 @@ class Sort {
     // Additional functions for quick sort algorithm.
     static void QuickSortImp(vector<T> &a, int left, int right, int (*order)(const T &lhs, const T &rhs));
 
+    // Additional functions for merge sort algorithm.
+    static void merge(vector<T> &a, int left, int mid, int right, bool (*order)(const T &lhs, const T &rhs));
+    static void MergeSortImp(vector<T> &a, int left, int right, bool (*order)(const T &lhs, const T &rhs));
+
     // Additional functions for heap sort algorithm.
     static void createHeap(vector<T> &a, int (*order)(const T &lhs, const T &rhs));
     static void shift(vector<T> &a, int left, int right, int (*order)(const T &lhs, const T &rhs));
@@ -152,6 +156,46 @@ template <class T>
 void Sort<T>::QuickSort(vector<T> &a, int (*order)(const T &lhs, const T &rhs)) {
     if (!a.empty())
         QuickSortImp(a, 0, a.size() - 1, order);
+}
+
+template <class T>
+void Sort<T>::merge(vector<T> &a, int left, int mid, int right, bool (*order)(const T &lhs, const T &rhs)) {
+    vector<int> arrayLeft(a.begin() + left, a.begin() + mid + 1); // contains from a[left] to a[mid].
+    vector<int> arrayRight(a.begin() + mid + 1, a.begin() + right + 1); // contains from a[mid + 1] to a[right].
+    int sizeLeft = arrayLeft.size();
+    int sizeRight = arrayRight.size();
+    int indexLeft = 0;
+    int indexRight = 0;
+    int index = left;
+
+    while (indexLeft < sizeLeft && indexRight < sizeRight) {
+        if (order(arrayLeft[indexLeft], arrayRight[indexRight]))
+            a[index++] = arrayLeft[indexLeft++];
+        else 
+            a[index++] = arrayRight[indexRight++];
+    }
+
+    while (indexLeft < sizeLeft)
+        a[index++] = arrayLeft[indexLeft++];
+
+    while (indexRight < sizeRight)
+        a[index++] = arrayRight[indexRight++];
+}
+
+template <class T>
+void Sort<T>::MergeSortImp(vector<T> &a, int left, int right, bool (*order)(const T &lhs, const T &rhs)) {
+    if (left < right) {
+        int mid = (left + right) / 2;
+        MergeSortImp(a, left, mid, order);
+        MergeSortImp(a, mid + 1, right, order);
+        merge(a, left, mid, right, order);
+    }
+}
+
+template <class T>
+void Sort<T>::MergeSort(vector<T> &a, bool (*order)(const T &lhs, const T &rhs)) {
+    if (!a.empty())
+        MergeSortImp(a, 0, a.size() - 1, order);
 }
 
 template <class T>

@@ -20,13 +20,15 @@ template <class T>
 class Search {
     Search() {} // private initialize.
 
+    static void makeValidIndex(vector<T> &a, int &start, int &end);
+
 public:
     static const int NOT_FOUND;
 
-    static int LinearSearch(const vector<T> &a, const T &key);
-    static int SentinelLinearSearch(const vector<T> &a, const T &key);
-    static int BinarySearch(const vector<T> &a, const T &key);
-    static int InterpolationSearch(const vector<T> &a, const T &key);
+    static int LinearSearch(const vector<T> &a, const T &key, int start, int end);
+    static int SentinelLinearSearch(const vector<T> &a, const T &key, int start, int end);
+    static int BinarySearch(const vector<T> &a, const T &key, int start, int end);
+    static int InterpolationSearch(const vector<T> &a, const T &key, int start, int end);
 };
 
 // End of declaration.
@@ -47,8 +49,19 @@ template <class T>
 const int Search<T>::NOT_FOUND = -1;
 
 template <class T>
-int LinearSearch(const vector<T> &a, const T &key) {
-    for (int i = 0; i < a.size(); i++)
+void Search<T>::makeValidIndex(vector<T> &a, int &start, int &end) {
+    if (start < 0)
+        start = 0;
+    
+    if (end > a.size())
+        end = a.size();
+}
+
+template <class T>
+int Search<T>::LinearSearch(const vector<T> &a, const T &key, int start, int end) {
+    Search<T>::makeValidIndex(a, start, end);
+
+    for (int i = start; i < end; i++)
         if (a[i] == key)
             return i;
 
@@ -56,20 +69,32 @@ int LinearSearch(const vector<T> &a, const T &key) {
 }
 
 template <class T>
-int SentinelLinearSearch(const vector<T> &a, const T &key) {
-    vector<int> copy = a;
-    copy.push_back(key);
-    int i = 0;
+int Search<T>::SentinelLinearSearch(const vector<T> &a, const T &key, int start, int end) {
+    if (a.empty())
+        return Search<T>::NOT_FOUND;
 
-    while (copy[i++] != key);
+    Search<T>::makeValidIndex(a, start, end);
 
-    return (i == copy.size() ? Search<T>::NOT_FOUND : i);
+    if (end < a.size()) {
+        a[end] = key;
+        while (a[start++] != key);
+    } else {
+        vector<int> copy = a;
+        copy.push_back(key);
+        ++end;
+
+        while (copy[start++] != key);
+    }
+
+    return (start == end ? Search<T>::NOT_FOUND : start);
 }
 
 template <class T>
-int BinarySearch(const vector<T> &a, const T &key) {
-    int left = 0;
-    int right = a.size() - 1;
+int Search<T>::BinarySearch(const vector<T> &a, const T &key, int start, int end) {
+    Search<T>::makeValidIndex(a, start, end);
+
+    int left = start;
+    int right = end - 1;
     int mid = 0;
 
     while (left <= right) {
@@ -87,9 +112,11 @@ int BinarySearch(const vector<T> &a, const T &key) {
 }
 
 template <class T>
-int InterpolationSearch(const vector<T> &a, const T &key) {
-    int left = 0;
-    int right = a.size() - 1;
+int Search<T>::InterpolationSearch(const vector<T> &a, const T &key, int start, int end) {
+    Search<T>::makeValidIndex(a, start, end);
+
+    int left = start;
+    int right = end - 1;
     int mid = 0;
 
     while (a[left] != a[right] && key >= a[left] && key <= a[right]) {

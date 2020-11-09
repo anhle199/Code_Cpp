@@ -16,16 +16,17 @@ int ascendingInt(const int &lhs, const int &rhs) {
 }
 
 int main() {
-    vector<int> a = {38, 4, 6, 8, 72, 3, 5, 6, 8, 2, 3, 49, 23};
+    vector<int> a = {4, 38, 6, 8, 72, 3, 5, 6, 8, 2, 3, 49, 23};
 
 //    Sort<int>::SelectionSort(a, ascending);
 //    Sort<int>::InterchangeSort(a, ascending);
-//    Sort<int>::InsertionSort(a, ascending); // chua test.
+//    Sort<int>::InsertionSort(a, ascending);
+//    Sort<int>::BinaryInsertionSort(a, ascending);
 //    Sort<int>::BubbleSort(a, ascending);
 //    Sort<int>::ShakerSort(a, ascending);
 //    Sort<int>::QuickSort(a, ascendingInt);
 //    Sort<int>::HeapSort(a, ascendingInt);
-    Sort<int>::MergeSort(a, ascending);
+//    Sort<int>::MergeSort(a, ascending);
     for (const int &item : a) 
         cout << item << " ";
     cout << endl;

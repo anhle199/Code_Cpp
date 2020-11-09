@@ -2,6 +2,7 @@
 #define SORT_ALGORITHMS_H_
 
 #include <vector>
+#include "Search.h"
 
 using namespace std;
 
@@ -53,6 +54,8 @@ public:
     static void CountingSort(vector<T> &a, bool (*order)(const T &lhs, const T &rhs));
 
     static void ShellSort(vector<T> &a, bool (*order)(const T &lhs, const T &rhs));
+
+    static void FlashSort(vector<T> &a, bool (*order)(const T &lhs, const T &rhs));
 };
 
 // End of declaration.
@@ -92,6 +95,51 @@ void Sort<T>::SelectionSort(vector<T> &a, bool (*order)(const T &lhs, const T &r
                 pos = j;
 
         swap(a[i], a[pos]);
+    }
+}
+
+template <class T>
+void Sort<T>::InsertionSort(vector<T> &a, bool (*order)(const T &lhs, const T &rhs)) {
+    int x;
+    int n = a.size();
+
+    for (int i = 1; i < n; i++) {
+        x = a[i];
+
+        int j = i - 1;
+        while (j >= 0 && !order(a[j], x)) {
+            a[j + 1] = a[j];
+            --j;
+        }
+
+        a[j + 1] = x;
+    }
+}
+
+template <class T>
+void Sort<T>::BinaryInsertionSort(vector<T> &a, bool (*order)(const T &lhs, const T &rhs)) {
+    int x;
+    int n = a.size();
+
+    for (int i = 1; i < n; i++) {
+        x = a[i];
+
+        int left = 0;
+        int right = i - 1;
+    
+        while (left <= right) {
+            int mid = (left + right) / 2;
+
+            if (order(a[mid], x))
+                left = mid + 1;
+            else
+                right = mid - 1;
+        }
+
+        for (int j = i; j > left; j--)
+            a[j] = a[j - 1];
+
+        a[left] = x;
     }
 }
 

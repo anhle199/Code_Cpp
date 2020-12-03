@@ -14,6 +14,7 @@
 
 using namespace std;
 
+#define UNKNOWN_VALUE       "[Unknown Value]"
 
 typedef uint64_t            UInt64;
 typedef int64_t             Int64;
@@ -21,12 +22,8 @@ typedef char                Sign;
 typedef unsigned int        UInt;
 typedef int                 Int;
 
-
-#define MAX_UINT64          to_string(ULLONG_MAX)
-#define MAX_INT64           to_string(LONG_LONG_MAX)
-#define UNKNOWN_VALUE       "[Unknown Value]"
-
-
+const string MAX_UINT64     = "18446744073709551615";
+const string MAX_INT64      = "9223372036854775807";
 const string zero           = "0";
 const string one            = "1";
 
@@ -77,27 +74,6 @@ public:
     static string negate(const string &number);
 
     static void notOperation(char &digit);
-
-    static string addTwoStrings(const string &left, const string &right, int radix = 10);
-
-    static string subtractTwoStrings(const string &left, const string &right);
-
-    static string multiplyByDigit(const string &str, UInt digit);
-
-    static void incrementByOne(string &number);
-
-    static string multiplyTwoStrings(const string &left, const string &right);
-
-    static string divideTwoStrings(const string &left, const string &right);
-
-    static string moduloTwoStrings(const string &left, const string &right);
-
 };
-
-// Remove all `repeatingValue` values at the beginning of `str` string.
-string removePrefix(const string &str, char repeatingValue);
-
-// Remove all `repeatingValue` values at the end of `str` string.
-string removeSuffix(const string &str, char repeatingValue);
 
 #endif

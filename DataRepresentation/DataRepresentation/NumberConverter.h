@@ -8,12 +8,9 @@
 #ifndef REPRESENT_NUMBER_H_
 #define REPRESENT_NUMBER_H_
 
-//#pragma pack(1)
-
 #include <vector>
 #include <sstream>
-#include <iomanip>
-#include "Number.h"
+#include "Operation.h"
 
 
 #define NUMBER_OF_TYPES     5

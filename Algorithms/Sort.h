@@ -49,13 +49,13 @@ public:
 
     static void HeapSort(vector<T> &a, int (*order)(const T &lhs, const T &rhs));
 
-    static void RadixSort(vector<T> &a, bool (*order)(const T &lhs, const T &rhs));
+    // static void RadixSort(vector<T> &a, bool (*order)(const T &lhs, const T &rhs));
 
-    static void CountingSort(vector<T> &a, bool (*order)(const T &lhs, const T &rhs));
+    // static void CountingSort(vector<T> &a, bool (*order)(const T &lhs, const T &rhs));
 
     static void ShellSort(vector<T> &a, bool (*order)(const T &lhs, const T &rhs));
 
-    static void FlashSort(vector<T> &a, bool (*order)(const T &lhs, const T &rhs));
+    // static void FlashSort(vector<T> &a, bool (*order)(const T &lhs, const T &rhs));
 };
 
 // End of declaration.
@@ -70,6 +70,7 @@ public:
 // |                                Implementation                                      |
 // |                                                                                    |
 // --------------------------------------------------------------------------------------
+
 
 
 template <class T>
@@ -100,13 +101,14 @@ void Sort<T>::SelectionSort(vector<T> &a, bool (*order)(const T &lhs, const T &r
 
 template <class T>
 void Sort<T>::InsertionSort(vector<T> &a, bool (*order)(const T &lhs, const T &rhs)) {
-    int x;
+    T x;
     int n = a.size();
+    int j;
 
     for (int i = 1; i < n; i++) {
         x = a[i];
 
-        int j = i - 1;
+        j = i - 1;
         while (j >= 0 && !order(a[j], x)) {
             a[j + 1] = a[j];
             --j;
@@ -118,22 +120,23 @@ void Sort<T>::InsertionSort(vector<T> &a, bool (*order)(const T &lhs, const T &r
 
 template <class T>
 void Sort<T>::BinaryInsertionSort(vector<T> &a, bool (*order)(const T &lhs, const T &rhs)) {
-    int x;
+    T x;
     int n = a.size();
+    int left, right, mid;
 
     for (int i = 1; i < n; i++) {
         x = a[i];
 
-        int left = 0;
-        int right = i - 1;
+        left = 0;
+        right = i - 1;
     
         while (left <= right) {
-            int mid = (left + right) / 2;
+            mid = (left + right) / 2;
 
-            if (order(a[mid], x))
-                left = mid + 1;
-            else
+            if (!order(a[mid], x))
                 right = mid - 1;
+            else
+                left = mid + 1;
         }
 
         for (int j = i; j > left; j--)
@@ -157,7 +160,7 @@ template <class T>
 void Sort<T>::ShakerSort(vector<T> &a, bool (*order)(const T &lhs, const T &rhs)) {
     int left = 1;
     int right = a.size() - 1;
-    int lastPosition = 0;
+    int lastPosition = right;
 
     do {
         for (int i = right; i >= left; i--)
@@ -182,11 +185,11 @@ template <class T>
 void Sort<T>::QuickSortImp(vector<T> &a, int left, int right, int (*order)(const T &lhs, const T &rhs)) {
     int i = left;
     int j = right;
-    int x = a[(left + right) / 2];
+    T x = a[(left + right) / 2];
 
     do {
-        while (order(a[i], x) <= 0) ++i;
-        while (order(x, a[j]) <= 0) --j;
+        while (order(a[i], x) > 0) ++i;
+        while (order(x, a[j]) > 0) --j;
 
         if (i <= j) {
             swap(a[i], a[j]);
@@ -196,8 +199,8 @@ void Sort<T>::QuickSortImp(vector<T> &a, int left, int right, int (*order)(const
 
     } while (i <= j);
 
-    if (left <= j) QuickSortImp(a, left, j, order);
-    if (i <= right) QuickSortImp(a, i, right, order);
+    if (left < j) QuickSortImp(a, left, j, order);
+    if (i < right) QuickSortImp(a, i, right, order);
 }
 
 template <class T>
@@ -208,8 +211,8 @@ void Sort<T>::QuickSort(vector<T> &a, int (*order)(const T &lhs, const T &rhs)) 
 
 template <class T>
 void Sort<T>::merge(vector<T> &a, int left, int mid, int right, bool (*order)(const T &lhs, const T &rhs)) {
-    vector<int> arrayLeft(a.begin() + left, a.begin() + mid + 1); // contains from a[left] to a[mid].
-    vector<int> arrayRight(a.begin() + mid + 1, a.begin() + right + 1); // contains from a[mid + 1] to a[right].
+    vector<T> arrayLeft(a.begin() + left, a.begin() + mid + 1); // contains from a[left] to a[mid].
+    vector<T> arrayRight(a.begin() + mid + 1, a.begin() + right + 1); // contains from a[mid + 1] to a[right].
     int sizeLeft = arrayLeft.size();
     int sizeRight = arrayRight.size();
     int indexLeft = 0;
@@ -234,6 +237,7 @@ template <class T>
 void Sort<T>::MergeSortImp(vector<T> &a, int left, int right, bool (*order)(const T &lhs, const T &rhs)) {
     if (left < right) {
         int mid = (left + right) / 2;
+
         MergeSortImp(a, left, mid, order);
         MergeSortImp(a, mid + 1, right, order);
         merge(a, left, mid, right, order);
@@ -260,7 +264,7 @@ template <class T>
 void Sort<T>::shift(vector<T> &a, int left, int right, int (*order)(const T &lhs, const T &rhs)) {
     int i = left;
     int j = 2 * i;
-    int x = a[i];
+    T x = a[i];
 
     while (j <= right) {
         if ((j < right) && (order(a[j], a[j + 1]) > 0))
@@ -286,6 +290,32 @@ void Sort<T>::HeapSort(vector<T> &a, int (*order)(const T &lhs, const T &rhs)) {
         swap(a[0], a[right]);
         --right;
         shift(a, 0, right, order);
+    }
+}
+
+template <class T>
+void Sort<T>::ShellSort(vector<T> &a, bool (*order)(const T &lhs, const T &rhs)) {
+    int n = a.size();
+    int k = (int)log2(n) - 1;
+    vector<int> lengths(k);
+    lengths[k - 1] = 1;
+
+    for (int i = k - 2; i >= 0; i--)
+        lengths[i] = (2 * lengths[i + 1]) + 1;
+
+    for (int step = 0; step < k; step++) {
+        int length = lengths[step];
+
+        for (int i = length; i < n; i++) {
+            T x = a[i];
+            int j = i - length;
+            while (j >= 0 && !order(a[j], x)) {
+                a[j + length] = a[j];
+                j -= length;
+            }
+
+            a[j + length] = x;
+        }
     }
 }
 

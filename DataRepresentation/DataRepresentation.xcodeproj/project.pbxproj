@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E61A3AB82570105500BD7273 /* Operation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E61A3AB62570105500BD7273 /* Operation.cpp */; };
+		E61A3ABD2570116A00BD7273 /* StringExtension.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E61A3ABB2570116A00BD7273 /* StringExtension.cpp */; };
 		E6F292D62545B10000D620E7 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E6F292D12545B10000D620E7 /* main.cpp */; };
 		E6F292D72545B10000D620E7 /* NumberConverter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E6F292D32545B10000D620E7 /* NumberConverter.cpp */; };
 		E6F292D82545B10000D620E7 /* Number.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E6F292D52545B10000D620E7 /* Number.cpp */; };
@@ -25,6 +27,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		E61A3AB62570105500BD7273 /* Operation.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Operation.cpp; sourceTree = "<group>"; };
+		E61A3AB72570105500BD7273 /* Operation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Operation.h; sourceTree = "<group>"; };
+		E61A3ABB2570116A00BD7273 /* StringExtension.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = StringExtension.cpp; sourceTree = "<group>"; };
+		E61A3ABC2570116A00BD7273 /* StringExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StringExtension.h; sourceTree = "<group>"; };
 		E6F292C52545B09100D620E7 /* DataRepresentation */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = DataRepresentation; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6F292D12545B10000D620E7 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		E6F292D22545B10000D620E7 /* NumberConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NumberConverter.h; sourceTree = "<group>"; };
@@ -68,6 +74,10 @@
 				E6F292D42545B10000D620E7 /* Number.h */,
 				E6F292D32545B10000D620E7 /* NumberConverter.cpp */,
 				E6F292D22545B10000D620E7 /* NumberConverter.h */,
+				E61A3AB62570105500BD7273 /* Operation.cpp */,
+				E61A3AB72570105500BD7273 /* Operation.h */,
+				E61A3ABB2570116A00BD7273 /* StringExtension.cpp */,
+				E61A3ABC2570116A00BD7273 /* StringExtension.h */,
 			);
 			path = DataRepresentation;
 			sourceTree = "<group>";
@@ -129,8 +139,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				E6F292D82545B10000D620E7 /* Number.cpp in Sources */,
+				E61A3ABD2570116A00BD7273 /* StringExtension.cpp in Sources */,
 				E6F292D62545B10000D620E7 /* main.cpp in Sources */,
 				E6F292D72545B10000D620E7 /* NumberConverter.cpp in Sources */,
+				E61A3AB82570105500BD7273 /* Operation.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

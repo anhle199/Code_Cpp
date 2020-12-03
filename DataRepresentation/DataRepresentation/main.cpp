@@ -6,13 +6,13 @@
 //
 
 #include <iostream>
+#include <iomanip>
 #include "NumberConverter.h"
 
 int main() {
     int choice;
     UInt baseN, baseM;
     string value;
-    Sign signBit;
     UInt k;
     NumberConverter converter;
     vector<string> listOfDecimalValues;
@@ -48,8 +48,8 @@ int main() {
                 cin >> baseM;
 
                 converter.setValueBaseN(value, baseN);
-                cout << "Base " << baseN << ": " << value << endl;
-                cout << "Base " << baseM << ": " << converter.valueBaseN(baseM) << endl;
+                cout << "Base " << setw(2) << left << baseN << ": " << value << endl;
+                cout << "Base " << setw(2) << left << baseM << ": " << converter.valueBaseN(baseM) << endl;
 
                 break;
             case 2:
@@ -61,7 +61,7 @@ int main() {
                 getline(cin, value);
 
                 converter.setValueBaseN(value, baseN);
-                cout << "Base " << baseN << ": " << value << endl;
+                cout << "Base " << setw(2) << left << baseN << ": " << value << endl;
                 cout << "Base 10" << ": " << converter.decimal() << endl;
 
                 break;
@@ -75,40 +75,38 @@ int main() {
 
                 converter.setValueBaseN(value, 10);
                 cout << "Base 10" << ": " << value << endl;
-                cout << "Base 10" << ": " << converter.valueBaseN(baseN) << endl;
+                cout << "Base " << setw(2) << left << baseN << ": " << converter.valueBaseN(baseN) << endl;
 
                 break;
             case 4:
-                cout << "Enter sign bit (0 or 1): ";
-                cin >> signBit;
-
                 cin.ignore();
-                cout << "Enter the binary value: ";
+                cout << "Enter a binary value: ";
                 getline(cin, value);
 
                 cout << "Enter the k for excess k type (non-negative number): ";
                 cin >> k;
 
-                converter.setValueBaseN(signBit + value, 2);
+                converter.setValueBaseN(value, 2);
                 listOfDecimalValues = converter.decimalRepresentByBinaryAllTypes(k);
 
-                cout << "Normal: " << listOfDecimalValues[NORMAL] << endl;
-                cout << "Excess " << k << ": " << listOfDecimalValues[OFFSET_BINARY] << endl;
-                cout << "Sign magnitude: " << listOfDecimalValues[SIGN_MAGNITUDE] << endl;
-                cout << "One's complement: " << listOfDecimalValues[ONE_COMPLEMENT] << endl;
-                cout << "Two's complement: " << listOfDecimalValues[TWO_COMPLEMENT] << endl;
+                cout << setw(17) << left << "Unsigned Integer" << ": " << listOfDecimalValues[NORMAL] << endl;
+                cout << "Excess " << setw(10) << left << k << ": " << listOfDecimalValues[OFFSET_BINARY] << endl;
+                cout << setw(17) << left << "Sign magnitude" << ": " << listOfDecimalValues[SIGN_MAGNITUDE] << endl;
+                cout << setw(17) << left << "One's complement" << ": " << listOfDecimalValues[ONE_COMPLEMENT] << endl;
+                cout << setw(17) << left << "Two's complement" << ": " << listOfDecimalValues[TWO_COMPLEMENT] << endl;
 
                 break;
             case 5:
                 cout << "You have exited." << endl;
                 break;
             default:
+                cout << "Invalid choice!." << endl;
                 break;
         }
 
         system("pause");
         system("cls");
-    } while (choice != 5);
+    } while (1 <= choice && choice <= 4);
     
     return 0;
 }

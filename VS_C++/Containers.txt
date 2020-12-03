@@ -1,9 +1,0 @@
-Container: empty, size, resize, clear, assign (giống 2 constructor)
-List: push_front, push_back, pop_front, pop_back, front, back, insert, remove, reverse, resize, sort, swap, remove (all elements with value), erase (pos, first->last), insert
-Stack: push, pop, top, swap
-Queue: push, pop, front, back, swap
-Vector: push_back, pop_back, front, back, assign, at, erase, insert, swap
-Set: find, erase (pos, value, first->last), insert, swap, 
-
-- List: unique, merge list
-- Vector1D: begin, end

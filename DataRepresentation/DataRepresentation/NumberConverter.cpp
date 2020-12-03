@@ -6,7 +6,6 @@
 //
 
 #include "NumberConverter.h"
-#include <iostream>
 
 void ValueInBase::setValue(char c) {
     sign = c;
@@ -32,10 +31,10 @@ vector<ValueInBase> NumberConverter::initTableValueInBase() {
        'U', 'V', 'W', 'X', 'Y', 'Z'
     };
 
-    const Int size = signInBase.size(); // auto is size_type.
+    const int size = signInBase.size();
     vector<ValueInBase> result(size);
 
-    for (Int i = 0; i < size; i++)
+    for (int i = 0; i < size; i++)
         result[i].setValue(signInBase[i]);
 
     return result;
@@ -48,9 +47,9 @@ string NumberConverter::decimalToBaseN(string decimal, UInt radix) {
     string result;
 
     while (!Number::isZero(decimal)) {
-        int i = stoi(Number::moduloTwoStrings(decimal, to_string(radix)));
+        int i = stoi(Operation::moduloTwoStrings(decimal, to_string(radix)));
         result = NumberConverter::_valueInBase[i].sign + result;
-        decimal = Number::divideTwoStrings(decimal, to_string(radix));
+        decimal = Operation::divideTwoStrings(decimal, to_string(radix));
     }
 
     return result;
@@ -63,8 +62,8 @@ string NumberConverter::baseNToDecimal(const string &value, UInt radix) {
     Int len = value.length();
     for (Int i = len - 1; i >= 0; i--) {
         UInt valueOfSign = ValueInBase::valueOfSign(value[i]);
-        decimal = Number::addTwoStrings(decimal, Number::multiplyByDigit(powerOfRadix, valueOfSign));
-        powerOfRadix = Number::multiplyTwoStrings(powerOfRadix, to_string(radix));
+        decimal = Operation::addTwoStrings(decimal, Operation::multiplyByDigit(powerOfRadix, valueOfSign));
+        powerOfRadix = Operation::multiplyTwoStrings(powerOfRadix, to_string(radix));
     }
 
     return decimal;
@@ -77,7 +76,7 @@ string NumberConverter::toOneComplement(const string &binary) {
     string oneComplement = binary;
 
     for (int i = 1; i < binary.length(); i++)
-    Number::notOperation(oneComplement[i]);
+        Number::notOperation(oneComplement[i]);
 
     return oneComplement;
 }
@@ -88,7 +87,7 @@ string NumberConverter::toTwoComplement(const string &binary) {
 
     string oneComplement = NumberConverter::toOneComplement(binary);
     oneComplement.erase(oneComplement.begin());
-    return '1' + Number::addTwoStrings(oneComplement, "1", 2);
+    return '1' + Operation::addTwoStrings(oneComplement, "1", 2);
 }
 
 string NumberConverter::complementToDecimal(const string &complement) {
@@ -114,7 +113,7 @@ string NumberConverter::signMagnitudeToDecimal(string binary) {
 }
 
 string NumberConverter::excessKToDecimal(const string &binary, UInt k) {
-    return Number::subtractTwoStrings(baseNToDecimal(binary, 2), to_string(k));
+    return Operation::subtractTwoStrings(baseNToDecimal(binary, 2), to_string(k));
 }
 
 NumberConverter::NumberConverter() : _decimalValue(zero) {}

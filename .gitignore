@@ -1,6 +1,5 @@
 .vs
 .Debug
 x64
-*.DS_Store
-.DS_Store
 Algorithms/test
+.DS_Store

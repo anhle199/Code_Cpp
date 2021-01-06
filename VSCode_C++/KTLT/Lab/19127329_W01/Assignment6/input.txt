@@ -1,9 +1,0 @@
-2
-1
-iPhone XS Max
-50
-40000000
-2
-Samsung Galaxy Note 9
-20
-23000000

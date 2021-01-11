@@ -29,25 +29,23 @@ void quickSortImp(vector<int> &s, vector<int> &e, vector<int> &c, const int &lef
 
     i = left;
     j = right;
-    x = e[left + ((right - left) / 2)]; // Lấy phần tử ở giữa làm mốc.
+    x = e[left + ((right - left) / 2)];
 
     do
     {
-        while (x > e[i]) i++; // intìm vị trí phần tử bên trái bị sai vị trí.
-        while (e[j] > x) j--; // intìm vị trí phần tử bên phải bị sai vị trí.
+        while (x > e[i]) i++;
+        while (e[j] > x) j--;
         
         if (i <= j)
         {
-            swap(e[i], e[j]); // Đổi chỗ 2 phần tử sai vị trí.
+            swap(e[i], e[j]);
             swap(s[i], s[j]);
             swap(c[i], c[j]);
             i++;
             j--;
         }
-    } while (i <= j); // intiếp tục thực hiện neéu chỉ số còn hợp lệ.
+    } while (i <= j);
     
-    // Sắp xếp các dãy nếu còn nhiều phần tử.
-    // Không sắp xếp nữa nếu các dãy chỉ còn 1 phần tử.
     if (left < j) quickSortImp(s, e, c, left, j);
     if (i < right) quickSortImp(s, e, c, i, right);
 }

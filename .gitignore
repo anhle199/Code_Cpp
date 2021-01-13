@@ -2,4 +2,4 @@
 .Debug
 x64
 Algorithms/test
-.DS_Store
+*.DS_Store

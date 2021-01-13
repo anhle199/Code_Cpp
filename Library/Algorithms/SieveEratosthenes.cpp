@@ -1,3 +1,5 @@
+// Time complexity: O(nlog(log(n)))
+// Space complexity: O(n)
 vector<bool> sieveEratosthenes(int n) {
 	vector<bool> primes(n + 1, true);
 	primes[0] = primes[1] = false;

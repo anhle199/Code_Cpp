@@ -10,8 +10,10 @@
 string removePrefix(const string &str, char repeatingValue) {
     size_t startIndex = str.find_first_not_of(repeatingValue);
 
-    if (startIndex == 0 || startIndex == string::npos)
+    if (startIndex == 0)
         return str;
+    if (startIndex == string::npos)
+        return "";
 
     return str.substr(startIndex, str.length() - startIndex);
 }

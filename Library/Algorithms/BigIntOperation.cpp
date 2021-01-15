@@ -145,22 +145,22 @@ string multiply(const string &lhs, const string &rhs) {
 
     for (int i = lhs.length() - 1; i > -1; i--) {
         if (lhs[i] != '0') {
-            string a(rhs.length(), '0');
-            int b = 0;
+            string productByDigit(rhs.length(), '0');
+            int carry = 0;
 
             for (int j = rhs.length() - 1; j > -1; j--) {
-                int productTwoDigits = (lhs[i] - '0') * (rhs[j] - '0') + b;
+                int productTwoDigits = (lhs[i] - '0') * (rhs[j] - '0') + carry;
 
-                b = productTwoDigits / 10;
+                carry = productTwoDigits / 10;
                 productTwoDigits %= 10;
 
-                a[j] = productTwoDigits + '0';
+                productByDigit[j] = productTwoDigits + '0';
             }
 
-            if (b != 0)
-                a = (char)(b + '0') + a;
+            if (carry != 0)
+                productByDigit = (char)(carry + '0') + productByDigit;
 
-            product = add(product, a + tail);
+            product = add(product, productByDigit + tail);
         }
 
         tail += "0";

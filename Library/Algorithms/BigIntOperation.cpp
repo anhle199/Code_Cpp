@@ -183,12 +183,12 @@ void divideAndModular(const string &lhs, const string &rhs, string &quotient, st
         quotient = "0";
         remainder = "0";
 
-        string divisor = lhs;
-        while (compare(divisor, rhs) != LESS) {
-            divisor = subtract(divisor, rhs);
+        string dividend = lhs;
+        while (compare(dividend, rhs) != LESS) {
+            dividend = subtract(dividend, rhs);
             incrementByOne(quotient);
         }
 
-        remainder = divisor;
+        remainder = dividend;
     }
 }

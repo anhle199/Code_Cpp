@@ -2,7 +2,7 @@
 vector<int> factor(int n) {
     vector<int> smallestPrimeFactor(n + 1, 0);
 
-    for (int i = 2; i * i <= n; i++) {
+    for (int i = 2; i <= n; i++) {
         if (smallestPrimeFactor[i] == 0) {
             smallestPrimeFactor[i] = i;
 
@@ -14,7 +14,7 @@ vector<int> factor(int n) {
 
     vector<int> primes;
 
-    while (n != 1) { // n != 0
+    while (n != 1) {
         primes.push_back(smallestPrimeFactor[n]);
         cout << smallestPrimeFactor[n] << endl;
         n /= smallestPrimeFactor[n];

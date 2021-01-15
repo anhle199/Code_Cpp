@@ -1,21 +1,24 @@
 // Using Sieve of Eratosthenes algorithm.
-vector<Factor> factor(int n) {
-	vector<int> smallestPrimeFactor(n + 1, -1);
-	smallestPrimeFactor[0] = 0;
-	smallestPrimeFactor[1] = 1;
+vector<int> factor(int n) {
+    vector<int> smallestPrimeFactor(n + 1, 0);
 
-	for (int i = 2; i * i <= n; i++) {
-		if (smallestPrimeFactor[i] == -1)
-			for (int j = i * i; j <= n; j += i)
-				smallestPrimeFactor[j] = i;
-	}
+    for (int i = 2; i * i <= n; i++) {
+        if (smallestPrimeFactor[i] == 0) {
+            smallestPrimeFactor[i] = i;
 
-	vector<int> primes;
+            for (int j = i * i; j <= n; j += i)
+                if (smallestPrimeFactor[j] == 0)
+                    smallestPrimeFactor[j] = i;
+        }
+    }
 
-	while (n) { // n != 0
-		primes.push_back(smallestPrimeFactor[n]);
-		n /= smallestPrimeFactor[n];
-	}
+    vector<int> primes;
 
-	return primes;
+    while (n != 1) { // n != 0
+        primes.push_back(smallestPrimeFactor[n]);
+        cout << smallestPrimeFactor[n] << endl;
+        n /= smallestPrimeFactor[n];
+    }
+
+    return primes;
 }

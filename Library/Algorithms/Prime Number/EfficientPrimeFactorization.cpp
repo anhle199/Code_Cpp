@@ -6,7 +6,7 @@ vector<int> factor(int n) {
         if (smallestPrimeFactor[i] == 0) {
             smallestPrimeFactor[i] = i;
 
-            for (int j = 2 * i; j <= n; j += i)
+            for (int j = i * i; j <= n; j += i)
                 if (smallestPrimeFactor[j] == 0)
                     smallestPrimeFactor[j] = i;
         }
